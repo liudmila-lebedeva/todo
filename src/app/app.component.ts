@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Platform } from '@ionic/angular';
+import { MyStorageService } from './my-storage.service';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private platform: Platform, public myStorage: MyStorageService) {
+    this.platform.ready().then(() => {
+      this.myStorage.initialize();
+    });
+  }
 }
+
